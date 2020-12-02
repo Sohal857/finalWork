@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SHOW</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Temp(°C)</th>
+		      <th>R.Hum(%)</th>
+		      <th>B.Pressure(mbar)</th>
+		      <th>Precipitation(mm)</th>
+		      <th>I.S.Rradiation(W/m²)</th>
+          <th>O.S.Radiation(W/m²)</th>
+		      <th>W.Speed(m/s)</th>
+		      <th>W.Direction(m/s)</th>
+		      <th>P.A.Radiation</th>
+		      <th>Log Time Date</th>
+
+        </tr>
+      </thead>
+      <tbody>
+	       {% for data in object_list %}
+         <tr>
+           <td>{{data.temperature}}</td>
+           <td>{{data.relative_humidity}}</td>
+		       <td>{{data.barometric_pressure}}</td>
+		       <td>{{data.precipitation}}</td>
+		       <td>{{data.incoming_solar_radiation}}</td>
+           <td>{{data.outgoing_solar_radiation}}</td>
+           <td>{{data.wind_speed}}</td>
+		       <td>{{data.wind_direction}}</td>
+		       <td>{{data.photosynthetically_active_radiation}}</td>
+		       <td>{{data.captured_sensor_time_date}}</td>
+         </tr>
+	       {% endfor %}
+	    </tbody>
+    </table>
+  </div>
+</body>
+</html>

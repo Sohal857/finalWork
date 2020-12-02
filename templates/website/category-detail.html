@@ -1,0 +1,32 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+    {% if category %}
+        Product Category - {{ category.name|safe }}
+    {% else %}
+        Credosense 
+    {% endif %}
+{% endblock%}
+
+{% block category %}
+
+{% if category %}
+    <h1>{{ category.name }}</h1>
+    <div class="story">
+        {% for product in category.get_products %}
+            <div class="row">
+                <a href="/product/{{ product.slug }}">
+                    <img alt="{{ product.name }}" title="{{ product.name }}" class="product-image" src="/media/{{ product.image }}" />
+                </a>
+                <h2>{{ product.name }}</h2>
+                <p>Price: {{ product.price|safe}}</p>
+                {{ product.features|safe }}
+                <p><a href="/product/{{ product.slug }}">&raquo; View details</a></p>
+            </div>
+        {% endfor%}
+    </div>
+{% else %}
+    <p>No content</p>
+{% endif %}
+
+{% endblock %}

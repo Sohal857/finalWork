@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) ­ Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA­141746483­1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA­141746483­1');
+    </script>
+    <!-- Google site tag ends -->
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Slider CSS -->
+    <link rel="stylesheet" href="{% static 'css/lightslider.min.css' %}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Header starts -->
+        <div id="header">
+            <div class="menu">
+                <a href="#" class="menu-click">
+                    <i class="fas fa-bars fa-2x"></i>
+                    <!--<img src="{% static 'images/menu.png' %}" width="50" /> -->
+                    <ul class="dropdown-menu">
+                        <li id="product-submenu"><a href="/product/">PRODUCTS</a>
+                            {% if cat_url %}
+                                <ul class="dropdown-submenu">
+                                {% for cat in cat_url %}
+                                    <li><a href="/product/category/{{ cat.1 }}/">{{ cat.0|safe|upper  }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                        <li><a href="/Credosense-team/">Credosense TEAM</a></li>
+                        <li><a href="/Credosense-philosophy/">PHILOSOPHY</a></li>
+                    </ul>
+                </a>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="{% static 'images/logo.png' %}" /></a>
+            </div>
+            <div class="icon">
+                <i class="fas fa-search-minus fa-2x"></i>
+                <i class="fas fa-cart-plus fa-2x"></i>
+            </div>
+        </div>
+
+        <!-- Slider starts -->
+        {% if request.get_full_path == "/" or request.get_full_path == "/index.html" %}
+            <div id="slider">
+                <div class="clide slide-1">
+                    <div class="slide slide-1-1">
+                        <img src="{% static 'images/High_Quality.png' %}" style="width: 50%; margin-top: 29%" />
+                    </div>
+                    <div class="slide-1-2"></div>
+                </div>
+                <div class="clide slide-2">
+                    <div class="slide slide-2-1">
+                        <img src="{% static 'images/Better_Price.png' %}" style="width: 50%; margin-top: 29%" />
+                    </div>
+                    <div class="slide-2-2"></div>
+                </div>
+                <div class="clide slide-3">
+                    <div class="slide slide-3-1">
+                        <img src="{% static 'images/Smart_Design.png' %}" style="width: 50%; margin-top: 29%" />
+                    </div>
+                    <div class="slide-3-2"></div>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Container starts -->
+        <div id="container">
+            {% block slider %} {% endblock %}
+            <!-- Featured product -->
+            <div id="content">
+                {% block featued_product %}{% endblock %}
+                {% block content %}{% endblock %}
+                {% block product %}{% endblock %}
+                {% block products %}{% endblock %}
+                {% block categories %}{% endblock %}
+                {% block category %}{% endblock %}
+            </div>
+        </div>
+
+        <!-- Footer starts -->
+        <div id="footer">
+            <div id="social">
+                <div class="social-left">
+                    <i class="fab fa-facebook-square fa-2x"></i>
+                    <i class="fab fa-twitter-square fa-2x"></i>
+                    <i class="fab fa-youtube fa-2x"></i>
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </div>
+                <div class="social-right">
+                    <a href="mailto:nl.Credosensebc@gmail.com"><i class="far fa-envelope"></i> email sign-up</a>
+                </div>
+            </div>
+            <div id="footer-menu">
+                <div class="footer-menu-left">
+                    <a>CONTACT US</a><br />
+                    <a href="mailto:info.Credosensebc@gmail.com"><i class="far fa-envelope"></i></a>&nbsp;&nbsp;
+                    <i id="phone-click" class="fas fa-phone-square"></i>
+                        <div id="phones" class="phone-number">
+                            <b>Bangladesh</b><br />Cell: <a href="tel:+8801723620138">+8801723620138 (GMT 4:00 AM – 1:00 PM)</a><br />
+                            <b>Canada</b><br />Cell: <a href="tel:+1-647-608-0367">+1-647-608-0367 (GMT 3:00 PM – 2:00 AM)</a>
+                        </div><br />
+                    <a href="/Credosense-career/">CAREER</a>
+
+                </div>
+                <div class="footer-menu-right">
+                    <a href="/privacy-policy/">PRIVACY STATEMENTS</a> <br />
+                    <a href="/terms-and-conditions-of-sale/">TERMS & CONDITIONS</a> <br />
+                    <a href="/copyrights-trademarks-patents/">COPYRIGHT, TRADEMARKS, & PATENTS</a> <br />
+                </div>
+            </div>
+            <div id="footer-address">
+                <p>Nikunja 02, Dhaka, Bangladesh | Toronto, Ontario, Canada</p>
+                <p>&copy; {% now 'Y' %} Credosense Ltd.</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/lightslider.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+</body>
+</html>

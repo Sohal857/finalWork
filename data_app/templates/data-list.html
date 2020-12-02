@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card-body">
+    <h4>Data List</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Temp(°C)</th>
+                <th scope="col">R.Hum(%)</th>
+                <th scope="col">B.Pressure(mbar)</th>
+                <th scope="col">Precipitation(mm)</th>
+                <th scope="col">I.S.Rradiation(W/m²)</th>
+                <th scope="col">O.S.Radiation(W/m²)</th>
+                <th scope="col">W.Speed(m/s)</th>
+                <th scope="col">W.Direction(m/s)</th>
+                <th scope="col">P.A.Radiation</th>
+                <th scope="col">Log Time Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in object_list %}
+            <tr>
+                <td>{{ data.temperature }}</td>
+                <td>{{ data.relative_humidity }}</td>
+                <td>{{ data.barometric_pressure }}</td>
+                <td>{{ data.precipitation }}</td>
+                <td>{{ data.incoming_solar_radiation }}</td>
+                <td>{{ data.outgoing_solar_radiation }}</td>
+                <td>{{ data.wind_speed }}</td>
+                <td>{{ data.wind_direction }}</td>
+                <td>{{ data.photosynthetically_active_radiation }}</td>
+                <!-- <td>{{ data.captured_server_time_date }}</td> -->
+                <td>{{ data.captured_sensor_time_date }}</td>
+                <td><a type="button" class="btn btn-primary" href="/data-detail/{{ data.id }}">Detail</a>
+                    <a type="button" class="btn btn-warning" href="/data-update/{{ data.id }}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/data-delete/{{ data.id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'data-create' %}">Create</a>
+</div>
+{% endblock %}

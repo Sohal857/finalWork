@@ -1,0 +1,28 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+    {% if product %}
+        Credosense Product - {{ product.name|safe }}
+    {% else %}
+        Credosense 
+    {% endif %}
+{% endblock%}
+
+{% block product %}
+
+{% if product %}
+    <h1>{{ product.name }}</h1>
+    <div class="story">
+        <div class="row one-row">
+            <img class="product-image" src="/media/{{ product.image }}" title="{{ product.name|safe }}" alt="{{ product.name|safe }}" />
+            <h3>FEATURES</h3>
+            {{ product.features|safe }}
+            <h3>DETAILS</h3>
+            {{ product.description|safe }}
+        </div>
+    </div>
+{% else %}
+    <p>No content</p>
+{% endif %}
+
+{% endblock %}

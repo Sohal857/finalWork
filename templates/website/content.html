@@ -1,0 +1,22 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+    {% if content %}
+        Credosense - {{ content.title|safe }}
+    {% else %}
+        Credosense 
+    {% endif %}
+{% endblock%}
+
+{% block content %}
+
+{% if content %}
+    <h1>{{ content.title|safe }}</h1>
+    <div class="story">
+        {{ content.body|safe }}
+    </div>
+{% else %}
+    <p>No content</p>
+{% endif %}
+
+{% endblock %}

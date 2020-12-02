@@ -1,0 +1,35 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+    Credosense Home
+{% endblock%}
+
+{% block featued_product %}
+
+{% if content %}
+    <h1>FEATURED PRODUCTS</h1>
+    <div id="product">
+        <ul id="content-slider" class="content-slider">
+            {% for product in content %}
+                <li>
+                    <div class="image">
+                        <a href="product/{{ product.slug }}">
+                            <img title="{{ product.name|safe }}" alt="{{ product.name|safe }}" src="/media/{{ product.image }}" />
+                        </a>
+                    </div>
+                    <div class="text">
+                        <a href="product/{{ product.slug }}">
+                            <h3 class="product-title">{{ product.name|safe }}</h3>
+                        </a>
+                        {{ product.features|safe }}
+                    </div>
+                </li>
+            {% endfor%}
+        </ul>
+    </div>
+
+{% else %}
+    <p>No content</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,572 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- the following code is for refreshing -->
+    <!-- <meta http-equiv="refresh" content="10; URL=http://192.168.1.13:8000/graph"> -->
+    <style>
+      .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top:0;
+        background-color: none;
+        padding-top: 5px;
+        padding-bottom: 48px;
+        padding-right: 85px;
+        font-size: 10px;
+        width:100%;
+        /* position: fixed;
+        bottom: 60px;
+        right: 250px; */
+
+      }
+      .sticky a:hover{
+        text-decoration:none;
+      }
+    </style>
+    <script>
+     $(document).ready(function(){
+        //The following code is for streaming
+        // setInterval(function() {
+        //   cache_clear()
+        // },10000);
+        // function cache_clear() {
+        //   window.location.reload(true);
+        //   // window.location.reload(); use this if you do not remove cache
+        // }
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+            datasets: [{
+                // label: 'Temperature (°C)',   //this is legend level
+                 fill: false,
+                 borderColor: "#222823",
+                 borderWidth: 3,
+                 data : [{% for data in object_list %} '{{data.temperature}}', {% endfor %}],
+             }]
+           },
+
+        options: {
+            // title: {
+            //   display: false,
+            //   fontSize: 20,
+            //   text: '                     Time vs Temperature (°C):',
+            //   align: 'end'
+            // },
+            animation: {
+                duration:0,
+            },
+            legend: {
+              display: false
+            },
+            scales: {
+                yAxes: [{
+                    display: true,
+                    gridLines: {
+                        zeroLineColor: '#000000'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temperature(°C)',
+                        fontColor: '#000000',
+                        fontSize:20
+                    },
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 15,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    display: true,
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 10.5,
+                        beginAtZero: true
+                        }
+                }],
+            }
+        }
+        });
+
+
+        var ctx_2 = document.getElementById('myChart2').getContext('2d');
+        var myChart2 = new Chart(ctx_2, {
+          type: 'line',
+          data: {
+            labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+            datasets: [{
+                // label: 'Relative Humidity',   //this is legend level
+                data: [{% for data in object_list %} '{{data.relative_humidity}}', {% endfor %}],
+                 fill: false,
+                 borderColor: "#222823",
+                 borderWidth: 3
+             }]
+           },
+
+           options: {
+               legend: {
+                 display: false
+               },
+               animation: {
+                   duration:0,
+               },
+               scales: {
+                   yAxes: [{
+                       display: true,
+                       gridLines: {
+                           zeroLineColor: '#000000'
+                       },
+                       scaleLabel: {
+                           display: true,
+                           labelString: 'Relative Humidity(%)',
+                           fontColor: '#000000',
+                           fontSize:20
+                       },
+                       ticks: {
+                           fontColor: "black",
+                           fontSize: 15,
+                           beginAtZero: true
+                       }
+                   }],
+                   xAxes: [{
+                       display: true,
+                       ticks: {
+                           fontColor: "black",
+                           fontSize: 10.5,
+                           beginAtZero: true
+                           }
+                   }],
+               }
+           }
+           });
+           var ctx_3 = document.getElementById('myChart3').getContext('2d');
+           var myChart3 = new Chart(ctx_3, {
+            type: 'line',
+            data: {
+              labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+              datasets: [{
+                  // label: 'Barometric Pressure',   //this is legend level
+                  data: [{% for data in object_list %} '{{data.barometric_pressure}}', {% endfor %}],
+                   fill: false,
+                   // pointDotRadius: 3,
+                   borderColor: "#222823",
+                   borderWidth: 3
+               }]
+             },
+
+             options: {
+                 legend: {
+                   display: false
+                 },
+                 animation: {
+                     duration:0,
+                 },
+                 scales: {
+                     yAxes: [{
+                         display: true,
+                         gridLines: {
+                             zeroLineColor: '#000000'
+                         },
+                         scaleLabel: {
+                             display: true,
+                             labelString: 'Barometric Pressure(mbar)',
+                             fontColor: '#000000',
+                             fontSize:20
+                         },
+                         ticks: {
+                             fontColor: "black",
+                             fontSize: 15,
+                             beginAtZero: true
+                         }
+                     }],
+                     xAxes: [{
+                         display: true,
+                         ticks: {
+                             fontColor: "black",
+                             fontSize: 10.5,
+                             beginAtZero: true
+                             }
+                     }],
+                 }
+             }
+             });
+
+             var ctx_4 = document.getElementById('myChart4').getContext('2d');
+             var myChart4 = new Chart(ctx_4, {
+              type: 'line',
+              data: {
+                labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                datasets: [{
+                    // label: 'Precipitation',   //this is legend level
+                    data: [{% for data in object_list %} '{{data.precipitation}}', {% endfor %}],
+                     fill: false,
+                     borderColor: "#222823",
+                     borderWidth: 3
+                 }]
+               },
+
+               options: {
+                   legend: {
+                     display: false
+                   },
+                   animation: {
+                       duration:0,
+                   },
+                   scales: {
+                       yAxes: [{
+                           display: true,
+                           gridLines: {
+                               zeroLineColor: '#000000'
+                           },
+                           scaleLabel: {
+                               display: true,
+                               labelString: 'Precipitation(mm)',
+                               fontColor: '#000000',
+                               fontSize:20
+                           },
+                           ticks: {
+                               fontColor: "black",
+                               fontSize: 20,
+                               beginAtZero: true
+                           }
+                       }],
+                       xAxes: [{
+                           display: true,
+                           ticks: {
+                               fontColor: "black",
+                               fontSize: 10,
+                               beginAtZero: true
+                               }
+                       }],
+                   }
+               }
+               });
+               var ctx_5 = document.getElementById('myChart5').getContext('2d');
+               var myChart5 = new Chart(ctx_5, {
+                type: 'line',
+                data: {
+                  labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                  datasets: [{
+                      // label: 'Incoming Solar Radiation',   //this is legend level
+                      data: [{% for data in object_list %} '{{data.incoming_solar_radiation}}', {% endfor %}],
+                       fill: false,
+                       borderColor: "#222823",
+                       borderWidth: 3
+                   }]
+                 },
+
+                 options: {
+                     legend: {
+                       display: false
+                     },
+                     animation: {
+                         duration:0,
+                     },
+                     scales: {
+                         yAxes: [{
+                             display: true,
+                             gridLines: {
+                                 zeroLineColor: '#000000'
+                             },
+                             scaleLabel: {
+                                 display: true,
+                                 labelString: 'Incoming Solar Radiation(W/m²)',
+                                 fontColor: '#000000',
+                                 fontSize:20
+                             },
+                             ticks: {
+                                 fontColor: "black",
+                                 fontSize: 20,
+                                 beginAtZero: true
+                             }
+                         }],
+                         xAxes: [{
+                             display: true,
+                             ticks: {
+                                 fontColor: "black",
+                                 fontSize: 10,
+                                 beginAtZero: true
+                                 }
+                         }],
+                     }
+                 }
+                 });
+                 var ctx_6 = document.getElementById('myChart6').getContext('2d');
+                 var myChart6 = new Chart(ctx_6, {
+                  type: 'line',
+                  data: {
+                    labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                    datasets: [{
+                        // label: 'Outgoing Solar Radiation',   //this is legend level
+                        data: [{% for data in object_list %} '{{data.outgoing_solar_radiation}}', {% endfor %}],
+                         fill: false,
+                         // pointDotRadius: 3, // for point
+                         borderColor: "#222823",
+                         borderWidth: 3
+                     }]
+                   },
+
+                   options: {
+                       legend: {
+                         display: false
+                       },
+                       animation: {
+                           duration:0,
+                       },
+                       scales: {
+                           yAxes: [{
+                               display: true,
+                               gridLines: {
+                                   zeroLineColor: '#000000'
+                               },
+                               scaleLabel: {
+                                   display: true,
+                                   labelString: 'Outgoing Solar Radiation(W/m²)',
+                                   fontColor: '#000000',
+                                   fontSize:20
+                               },
+                               ticks: {
+                                   fontColor: "black",
+                                   fontSize: 20,
+                                   beginAtZero: true
+                               }
+                           }],
+                           xAxes: [{
+                               display: true,
+                               ticks: {
+                                   fontColor: "black",
+                                   fontSize: 10,
+                                   beginAtZero: true
+                                   }
+                           }],
+                       }
+                   }
+                   });
+
+
+                  var ctx_7 = document.getElementById('myChart7').getContext('2d');
+                  var myChart7 = new Chart(ctx_7, {
+                    type: 'line',
+                    data: {
+                      labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                      datasets: [{
+                          // label: 'Wind Speed',   //this is legend level
+                          data: [{% for data in object_list %} '{{data.wind_speed}}', {% endfor %}],
+                           fill: false,
+                           borderColor: "#222823",
+                           borderWidth: 3
+                       }]
+                     },
+
+                     options: {
+                         legend: {
+                           display: false
+                         },
+                         animation: {
+                             duration:0,
+                         },
+                         scales: {
+                             yAxes: [{
+                                 display: true,
+                                 gridLines: {
+                                     zeroLineColor: '#000000'
+                                 },
+                                 scaleLabel: {
+                                     display: true,
+                                     labelString: 'Wind Speed(m/s)',
+                                     fontColor: '#000000',
+                                     fontSize:20
+                                 },
+                                 ticks: {
+                                     fontColor: "black",
+                                     fontSize: 20,
+                                     beginAtZero: true
+                                 }
+                             }],
+                             xAxes: [{
+                                 display: true,
+                                 ticks: {
+                                     fontColor: "black",
+                                     fontSize: 10,
+                                     beginAtZero: true
+                                     }
+                             }],
+                         }
+                     }
+                     })
+                    //  var ctx_8 = document.getElementById('myChart8').getContext('2d');
+                    //  var myChart8 = new Chart(ctx_8, {
+                    //   type: 'line',
+                    //   data: {
+                    //     labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                    //     datasets: [{
+                    //         label: 'Wind Direction',
+                    //         data: [{% for data in object_list %} '{{data.wind_direction}}', {% endfor %}],
+                    //          fill: false,
+                    //          borderColor: "#8e5ea2",
+                    //          borderWidth: 5
+                    //      }]
+                    //    },
+                    //
+                    //  options: {
+                    //     responsive: false,
+                    //     maintainAspectRatio: false,
+                    //     legend: {
+                    //       position: 'top',
+                    //       labels: {
+                    //       boxWidth: 12
+                    //       }
+                    //     },
+                    //     scales: {
+                    //
+                    //         yAxes: [{
+                    //             ticks: {
+                    //                 beginAtZero: true
+                    //             }
+                    //         }]
+                    //     }
+                    // }
+                    // });
+                    var ctx_9 = document.getElementById('myChart9').getContext('2d');
+                    var myChart9 = new Chart(ctx_9, {
+                      type: 'line',
+                      data: {
+                        labels: [{% for data in object_list %} '{{data.captured_sensor_time_date}}', {% endfor %}],
+                        datasets: [{
+                            // label: 'Photosynthetically Active Radiation',  //this is legend level
+                            data: [{% for data in object_list %} '{{data.photosynthetically_active_radiation}}', {% endfor %}],
+                             fill: false,
+                             // pointDotRadius: 3,
+                             borderColor: "#222823",
+                             borderWidth: 3
+                         }]
+                       },
+
+                       options: {
+                           legend: {
+                             display: false
+                           },
+                           animation: {
+                               duration:0,
+                           },
+                           scales: {
+                               yAxes: [{
+                                   display: true,
+                                   gridLines: {
+                                       zeroLineColor: '#000000'
+                                   },
+                                   scaleLabel: {
+                                       display: true,
+                                       labelString: 'Photosynthetically Active Radiation',
+                                       fontColor: '#000000',
+                                       fontSize:20
+                                   },
+                                   ticks: {
+                                       fontColor: "black",
+                                       fontSize: 20,
+                                       beginAtZero: true
+                                   }
+                               }],
+                               xAxes: [{
+                                   display: true,
+                                   ticks: {
+                                       fontColor: "black",
+                                       fontSize: 10,
+                                       beginAtZero: true
+                                       }
+                               }],
+                           }
+                       }
+                       })
+
+
+     });
+
+
+    </script>
+
+
+  <body>
+    <div class="container">
+    <div class="sticky"><a type="button" href="{%url 'csv' %}" style = "float:right; padding:8px; top:0; background-color : #222823; font-size:20px; color: white;border-radius:5px">Download CSV</a></div>
+      <div class="row">
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:12%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Temperature(°C)</h5>
+          </div>
+          <canvas id="myChart" width="550" height="550" style= "padding-bottom:30px" ></canvas>
+        </div>
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:12%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Relative Humidity(%)</h5>
+          </div>
+          <canvas id="myChart2" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:12%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Barometric Pressure(mbar)</h5>
+          </div>
+          <canvas id="myChart3" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:13%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Precipitation(mm)</h5>
+          </div>
+          <canvas id="myChart4" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:13%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Incoming Solar Radiation(W/m²)</h5>
+          </div>
+          <canvas id="myChart5" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:13%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Outgoing Solar Radiation(W/m²)</h5>
+          </div>
+          <canvas id="myChart6" width="550" height="550" style= "padding-bottom:30px"></canvas>
+
+       </div>
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:13%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">'Wind Speed(m/s)</h5>
+          </div>
+          <canvas id="myChart7" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+
+
+
+
+        <div>
+          <div style="background-color: #222823;display:block;width:77%;margin-left:13%;margin-bottom:0px;padding-top:13px;padding-bottom:7px;">
+            <h5 style="text-align: center;color: white;">Photosynthetically Active Radiation</h5>
+          </div>
+          <canvas id="myChart9" width="550" height="550" style= "padding-bottom:30px"></canvas>
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+{% endblock %}
+<!-- <div><canvas id="myChart8" width="550" height="550"></canvas></div>If direction needed we will add this -->

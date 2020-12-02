@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body">
+    <h4>Data Detail</h4>
+
+
+    <p>Temperature: {{ data.temperature }}</p>
+    <p>Relative Humidity: {{ data.relative_humidity }}</p>
+    <p>Barometric Pressure: {{ data.barometric_pressure }}</p>
+    <p>Precipitation: {{ data.precipitation }}</p>
+    <p>Incoming Solar Radiation: {{ data.incoming_solar_radiation }}</p>
+    <p>Outgoing Solar Radiation: {{ data.outgoing_solar_radiation }}</p>
+    <p>Wind Speed: {{ data.wind_speed }}</p>
+    <p>Wind Direction: {{ data.wind_direction }}</p>
+    <p>Photosynthetically Active Radiation: {{ data.photosynthetically_active_radiation }}</p>
+    <!-- <p>Captured Server Time Date: {{ data.captured_server_time_date }}</p> -->
+    <p>Captured Sensor Time Date: {{ data.captured_sensor_time_date }}</p>
+
+
+    <a type="button" class="btn btn-success" href="{%url 'data-list' %}">Back To List</a>
+</div>
+{% endblock %}
