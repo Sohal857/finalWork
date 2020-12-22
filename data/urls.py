@@ -23,9 +23,11 @@ admin.site.site_title = 'Credosense Admin Site'
 
 urlpatterns = [
     path('cms/admin/', admin.site.urls),
-    path('data/', include('data_app.urls')), #new
     path('', include('website.urls')),
     path('website/', include('website.urls')),
+    path('', include('data_app.urls')), #new
+    path('data/', include('data_app.urls')),
+
     path('summernote/', include('django_summernote.urls')),
 ]
 
