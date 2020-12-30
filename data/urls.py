@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from reg_user import views
+
 
 admin.site.site_header = 'Credosense Administration'
 admin.site.site_title = 'Credosense Admin Site'
 
 urlpatterns = [
     path('cms/admin/', admin.site.urls),
-    path('', include('website.urls')),
+    path('', include(('website.urls','website'), namespace='website')),
     path('website/', include('website.urls')),
     path('', include('data_app.urls')), #new
     path('data/', include('data_app.urls')),
-
+    path('reg_user/', include('reg_user.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
 

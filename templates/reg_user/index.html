@@ -1,0 +1,16 @@
+{% extends "reg_user/base.html" %}
+{% load static %}
+{% block body_block %}
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Credosense Limited INC.</h1>
+    {% if user.is_authenticated %}
+        <h2>Welcome {{ user.username }}!</h2>
+    {% else %}
+        <h2>Welcome to the site!</h2>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

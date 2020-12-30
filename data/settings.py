@@ -25,7 +25,7 @@ SECRET_KEY = '1$i8ruhcefn)i9y&d%!9i5@e@7^sihs^5e!e*_6t@yl8sqpuqd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.15']
+ALLOWED_HOSTS = ['192.168.1.17']
 
 
 # Application definition
@@ -41,8 +41,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'website',
     'django_summernote',
+    'reg_user',
+    'crispy_forms',
+    'django_countries',
+    'phonenumber_field',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+LOGIN_URL = '/reg_user/user_login/'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

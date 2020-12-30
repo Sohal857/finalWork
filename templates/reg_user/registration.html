@@ -1,0 +1,87 @@
+{% extends "reg_user/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register Here!</h1>
+        <h3></h3>
+
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          <h4>Personal information</h4>
+          <hr style="border-top:2px solid #ccc; margin-top: -5px"/>
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.username|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.email|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.last_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.password|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ user_form.confirm_password|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ profile_form.website|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ profile_form.company|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ profile_form.phone_number|as_crispy_field }}
+            </div>
+          </div>
+          <div class="">
+            <h4>Address</h4>
+            <hr style="border-top:2px solid #ccc; margin-top: -5px"/>
+          </div>
+          <div  class="form-row">
+
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.unit|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.street_number|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.street_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.city|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.state|as_crispy_field }}
+            </div>
+
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.zip_code|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+              {{ profile_form.country|as_crispy_field }}
+            </div>
+
+
+
+          </div>
+          <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+{% endblock %}

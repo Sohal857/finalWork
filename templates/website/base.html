@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{% static 'css/lightslider.min.css' %}">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
 </head>
 <body>
     <div id="wrapper">
@@ -49,6 +50,8 @@
                         <li><a href="/Credosense-team/">CREDOSENSE TEAM</a></li>
                         <li><a href="/Credosense-philosophy/">PHILOSOPHY</a></li>
                         <li><a type="button" href="{%url 'graph' %}">GRAPH PAGE</a></li>
+                        <li><a type="button" href="{%url 'reg_user:register' %}">Sign up</a></li>
+                        <li><a type="button" href="{%url 'reg_user:user_login' %}">Sign in</a></li>
                     </ul>
                 </a>
             </div>
